@@ -1,4 +1,4 @@
-FROM jupyter/minimal-notebook:latest
+FROM registry.cn-shanghai.aliyuncs.com/xujintao/caffe
 
 # Switch to the root user so we can install additional packages.
 
@@ -8,17 +8,12 @@ USER root
 # the minimal base image. Also install 'rsync' so the 'oc rsync' command
 # can be used to copy files into the running container.
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends libav-tools rsync && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
 # Add labels so OpenShift recognises this as an S2I builder image.
 
-LABEL io.k8s.description="S2I builder for Jupyter (minimal-notebook)." \
-      io.k8s.display-name="Jupyter (minimal-notebook)" \
+LABEL io.k8s.description="S2I builder for Caffe." \
+      io.k8s.display-name="Caffe" \
       io.openshift.expose-services="8888:http" \
-      io.openshift.tags="builder,python,jupyter" \
+      io.openshift.tags="builder,Caffe" \
       io.openshift.s2i.scripts-url="image:///opt/app-root/s2i/bin"
 
 # Copy in S2I builder scripts for installing Python packages and copying
@@ -26,13 +21,9 @@ LABEL io.k8s.description="S2I builder for Jupyter (minimal-notebook)." \
 
 COPY s2i /opt/app-root/s2i
 
-# Adjust permissions on home directory so writable by group root.
-
-RUN chgrp -Rf root /home/$NB_USER && chmod -Rf g+w /home/$NB_USER
-
-# Adjust permissions on /etc/passwd so writable by group root.
-
-RUN chmod g+w /etc/passwd
+RUN \
+chgrp -R 0 /opt/start.sh && \
+chmod -R g=u /opt/start.sh
 
 # Revert the user but set it to be an integer user ID else the S2I build
 # process will reject the builder image as can't tell if user name
