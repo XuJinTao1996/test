@@ -10,18 +10,18 @@
     "spec": {
         "tags": [
             {
-                "name": "demo",
+                "name": "latest",
                 "annotations": {
                     "openshift.io/display-name": "Caffe (demo)",
                     "description": "Build and deploy a custom caffe image.",
                     "iconClass": "icon-caffe",
                     "sampleRepo": "",
                     "tags": "builder,caffe",
-                    "version": "demo"
+                    "version": "latest"
                 },
                 "from": {
                     "kind": "DockerImage",
-                    "name": "registry.cn-shanghai.aliyuncs.com/xujintao/caffe:demo"
+                    "name": "caffe:latest"
                 }
             }
         ]
