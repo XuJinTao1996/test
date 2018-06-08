@@ -2,26 +2,26 @@
     "kind": "ImageStream",
     "apiVersion": "v1",
     "metadata": {
-        "name": "s2i-minimal-notebook",
+        "name": "caffe",
         "annotations": {
-            "openshift.io/display-name": "Jupyter Notebook"
+            "openshift.io/display-name": "Caffe"
         }
     },
     "spec": {
         "tags": [
             {
-                "name": "latest",
+                "name": "demo",
                 "annotations": {
-                    "openshift.io/display-name": "Jupyter Notebook (latest)",
-                    "description": "Build and deploy a custom Jupyter Notebook image with pre-bundled notebooks, data files and Python packages.",
-                    "iconClass": "icon-python",
-                    "sampleRepo": "https://github.com/getwarped/sample-notebooks.git",
-                    "tags": "builder,python",
-                    "version": "latest"
+                    "openshift.io/display-name": "Caffe (demo)",
+                    "description": "Build and deploy a custom caffe image.",
+                    "iconClass": "icon-caffe",
+                    "sampleRepo": "",
+                    "tags": "builder,caffe",
+                    "version": "demo"
                 },
                 "from": {
                     "kind": "DockerImage",
-                    "name": "getwarped/s2i-minimal-notebook:latest"
+                    "name": "registry.cn-shanghai.aliyuncs.com/xujintao/caffe:demo"
                 }
             }
         ]
