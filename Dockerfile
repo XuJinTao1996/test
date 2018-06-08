@@ -1,4 +1,4 @@
-FROM registry.cn-shanghai.aliyuncs.com/xujintao/caffe
+FROM registry.cn-shanghai.aliyuncs.com/xujintao/caffe:demo
 
 # Switch to the root user so we can install additional packages.
 
